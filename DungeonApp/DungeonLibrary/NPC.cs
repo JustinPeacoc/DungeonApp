@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dungeon
+namespace DungeonLibrary
 {
-    class Program
+    class NPC
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
