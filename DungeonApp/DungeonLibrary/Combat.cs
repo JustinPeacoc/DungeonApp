@@ -11,20 +11,16 @@ namespace EnemyLibrary
     {
         public static void DoAttack(Character attacker, Character defender)
         {
-            //Get a random number from 1-100
             Random rand = new Random();
-            int diceRoll = rand.Next(1, 101);
-            System.Threading.Thread.Sleep(30);
+            int attackNbr = rand.Next(1, 151);
 
-            if (diceRoll <= (attacker.CalcHitChance()) - defender.CalcBlockDodge())
+            if (attackNbr <= (attacker.CalcHitChance()) - defender.CalcBlockDodge())
             {
-                //if the attacker hit, calculate the damage
+
                 int damageDealt = attacker.CalcDamage();
 
-                //Assign the damage
                 defender.Health -= damageDealt;
 
-                //Write the result to the screen
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("{0} took {1} HP from {2}",
                     attacker.Name,
@@ -34,10 +30,9 @@ namespace EnemyLibrary
             }
             else
             {
-                //The attacker missed
-                Console.WriteLine("{0} didn't hit the target, try again.. if you don't get killed.", attacker.Name);
+                Console.WriteLine("{0} didn't hit the target.", attacker.Name);
             }
-        }//End DoAttack();
+        }
 
         public static void DoBattle(Player player, Enemy enemy)
         {
@@ -47,7 +42,7 @@ namespace EnemyLibrary
             {
                 DoAttack(enemy, player);
             }
-        }//End DoBattle();
+        }
 
 
     }

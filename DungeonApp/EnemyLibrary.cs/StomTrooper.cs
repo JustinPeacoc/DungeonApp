@@ -19,7 +19,7 @@ namespace EnemyLibrary
             MaxDamage = 20;
             Name = "Stormtrooper";
             Health = 50;
-            HitChance = 20;
+            HitChance = 0;
             BlockDodge = 20;
 
             MinDamage = 1;

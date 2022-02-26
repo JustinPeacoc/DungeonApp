@@ -9,7 +9,7 @@ using EnemyLibrary;
 
 namespace DungeonApplication
 {
-    class DungeonApp : Enemy
+    class DungeonApp
     {
         static void Main(string[] args)
         {
@@ -17,6 +17,7 @@ namespace DungeonApplication
             Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Star Wars Application");
+            #region Music
             Console.Beep(440, 500);
             Console.Beep(440, 500);
             Console.Beep(440, 500);
@@ -35,24 +36,19 @@ namespace DungeonApplication
             Console.Beep(349, 350);
             Console.Beep(523, 150);
            Console.Beep(440,1000);
+            #endregion
             Console.WriteLine("\n\nPlease press Enter to continue");
             Console.ReadLine();
             Console.ResetColor();
             Console.WriteLine("\n\nPlease enter your name: ");
             string playerName = Console.ReadLine();
             int score = 0;
-            Weapon weapon = new Weapon(40, 80, "lightsaber", 50, false);
-            //TODO Create a Player object
-            //Need to learn about custom classes first
-            //Console.Write("Choose your race: ");
-            //convert string??
-            //use switch case ConsoleKey
+            Weapon weapon = new Weapon(1, 80, "lightsaber", 50, false);
+
             bool exit = false;
 
             do//room 1
             {
-
-                //TODO Write a method for getting a room description
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write("\nPlease enter your character Race:\n" +
                         "Trandoshan: T\n" +
@@ -71,17 +67,18 @@ namespace DungeonApplication
                         "Zabrak: Z\n");
                 ConsoleKey playerRace = Console.ReadKey(true).Key;
                 Console.Clear();                
-                Player player = new Player(playerName, 70, 60, 100, 100, playerRace, weapon);
+                Player player = new Player(playerName, 100, 0, 100, 100, playerRace, weapon);
 
                 bool reload = false;
 
-                Rancor r = new Rancor("Rancor", 80, 90, 150, 30, 12, 40, "A Rancor; a towering hulk of muscle born to kill from the planet Dathomir blocks your path."); 
+                //Creating Enemy
+                Rancor r = new Rancor("Rancor", 150, 150, 1, 0, 1, 80, "A Rancor; a towering hulk of muscle born to kill from the planet Dathomir blocks your path."); 
 
-                StormTrooper s = new StormTrooper("Stormtrooper", 50, 40, 20, 20, 1, 20, "A Stormtrooper enters the room. An elite shock trooper bound with fanatic dedication to the Empire, he looks dangerous...");
+                StormTrooper s = new StormTrooper("Stormtrooper", 66, 40, 20, 20, 1, 20, "A Stormtrooper enters the room. An elite shock trooper bound with fanatic dedication to the Empire, he looks dangerous...");
 
                 TuskenRaider t1 = new TuskenRaider("Tusken Raider", 75, 110, 20, 20, 1, 20, "A Tusken Raider, indigenous to the planet Tatooine; wearing abundant clothing to protect themselves from the harsh weather and holding a slugthrower enters.They look insane.");
 
-                CloneTrooper66 c = new CloneTrooper66("Clone Trooper", 80, 40, 20, 20, 1, 20, "A Clone Trooper enters the room. Cloned and bred for war, Order 66 is enacted. He's not here to be friendly.");
+                CloneTrooper66 c = new CloneTrooper66("Clone Trooper", 75, 75, 1, 20, 1, 66, "A Clone Trooper enters the room. Cloned and bred for war, Order 66 is enacted. He's not here to be friendly.");
 
                 Enemy[] enemies = { r, r, s, s, t1, c, c, c };
 
@@ -124,36 +121,26 @@ namespace DungeonApplication
                             }
                             break;
 
-                        //Run Away
-
                         case ConsoleKey.R:
 
                             Console.WriteLine("Coward!!");
-
-                            //TODO Monster gets an attack of opportunity
-
                             break;
-
-                        //Player Info
 
                         case ConsoleKey.P:
                             Console.Clear();
                             Console.WriteLine("Player Info");
                             
                             Console.WriteLine(player);
-                            //TODO Need to display Player's info/stats
+                            Console.WriteLine("Enemies vanquished: " +score);
 
                             break;
-
-                        //Monster Info
 
                         case ConsoleKey.M:
 
-                            //TODO Need to Display the Monster's Info/stats
+                            Console.WriteLine("Enemy Info");
+                            Console.WriteLine(enemy);
 
                             break;
-
-                        //Exit
 
                         case ConsoleKey.X:
                         case ConsoleKey.E:
@@ -174,9 +161,15 @@ namespace DungeonApplication
 
                     #endregion
 
-                    //TODO Check the Player's life total
+                    
 
-
+                    if (player.Health <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("YOU ARE DEAD");
+                        Console.Beep(80, 300);
+                        exit = true;
+                    }
 
 
                 } while (!reload && !exit);
