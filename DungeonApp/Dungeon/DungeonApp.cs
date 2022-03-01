@@ -43,7 +43,7 @@ namespace DungeonApplication
             Console.WriteLine("\n\nPlease enter your name: ");
             string playerName = Console.ReadLine();
             int score = 0;
-            Weapon weapon = new Weapon(1, 80, "lightsaber", 50, false);
+            Weapon weapon = new Weapon(1, 40, "lightsaber", 50, false);
 
             bool exit = false;
 
@@ -67,34 +67,34 @@ namespace DungeonApplication
                         "Zabrak: Z\n");
                 ConsoleKey playerRace = Console.ReadKey(true).Key;
                 Console.Clear();                
-                Player player = new Player(playerName, 100, 0, 100, 100, playerRace, weapon);
+                Player player = new Player(playerName, 100, 10, 50, 50, playerRace, weapon);
 
                 bool reload = false;
 
                 //Creating Enemy
-                Rancor r = new Rancor("Rancor", 150, 150, 1, 0, 1, 80, "A Rancor; a towering hulk of muscle born to kill from the planet Dathomir blocks your path."); 
+                
+                Rancor test = new Rancor("rancor", 150, 150, 120, 20, 1, 80, "A Rancor; a towering hulk of muscle born to kill from the planet Dathomir blocks your path.");
 
-                StormTrooper s = new StormTrooper("Stormtrooper", 66, 40, 20, 20, 1, 20, "A Stormtrooper enters the room. An elite shock trooper bound with fanatic dedication to the Empire, he looks dangerous...");
+                StormTrooper s = new StormTrooper("Stormtrooper", 66, 40, 75, 20, 1, 20, "A Stormtrooper enters the room. An elite shock trooper bound with fanatic dedication to the Empire, he looks dangerous...");
 
-                TuskenRaider t1 = new TuskenRaider("Tusken Raider", 75, 110, 20, 20, 1, 20, "A Tusken Raider, indigenous to the planet Tatooine; wearing abundant clothing to protect themselves from the harsh weather and holding a slugthrower enters.They look insane.");
+                TuskenRaider t1 = new TuskenRaider("Tusken Raider", 75, 110, 75, 20, 1, 20, "A Tusken Raider, indigenous to the planet Tatooine; wearing abundant clothing to protect themselves from the harsh weather and holding a slugthrower enters.They look insane.");
+                TuskenRaider t2 = new TuskenRaider();
+                CloneTrooper66 c = new CloneTrooper66("Clone Trooper", 75, 75, 50, 20, 1, 66, "A Clone Trooper enters the room. Cloned and bred for war, Order 66 is enacted. He's not here to be friendly.");
 
-                CloneTrooper66 c = new CloneTrooper66("Clone Trooper", 75, 75, 1, 20, 1, 66, "A Clone Trooper enters the room. Cloned and bred for war, Order 66 is enacted. He's not here to be friendly.");
-
-                Enemy[] enemies = { r, r, s, s, t1, c, c, c };
+                Enemy[] enemies = { test, test, s, s, t1, c, c, c };
 
                 Random rand = new Random();
 
                 int randomNbr = rand.Next(enemies.Length);
 
                 Enemy enemy = enemies[randomNbr];
-
+                Console.WriteLine(GetRoom());
                 Console.WriteLine("\n  " + enemy.Description);
 
                 do
                 {
 
-                    #region GAME
-                    Console.WriteLine(GetRoom());
+                    #region GAME                  
                     Console.Write("\nWhat Do You Do??\n" +
                         "A) Fight\n" +
                         "R) Coward's Way\n" +
@@ -110,7 +110,7 @@ namespace DungeonApplication
                     {
                         //Attack
                         case ConsoleKey.A:
-                            Combat.DoBattle(player, enemy);
+                            Combat.DoBattle(player,enemy);                            
                             if (enemy.Health <= 0)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
@@ -124,28 +124,28 @@ namespace DungeonApplication
                         case ConsoleKey.R:
 
                             Console.WriteLine("Coward!!");
-                            break;
+                            break;//Run away
 
                         case ConsoleKey.P:
                             Console.Clear();
-                            Console.WriteLine("Player Info");
+                            Console.WriteLine("Player Info"); //Display Player Info
                             
                             Console.WriteLine(player);
-                            Console.WriteLine("Enemies vanquished: " +score);
+                            Console.WriteLine("Enemies vanquished: " + score);
 
                             break;
 
                         case ConsoleKey.M:
 
                             Console.WriteLine("Enemy Info");
-                            Console.WriteLine(enemy);
+                            Console.WriteLine(enemy);//Display enemy info
 
                             break;
 
                         case ConsoleKey.X:
                         case ConsoleKey.E:
 
-                            Console.WriteLine("You fade into nothingness...");
+                            Console.WriteLine("You fade into nothingness...");//Exit
 
                             exit = true;
 
@@ -156,7 +156,7 @@ namespace DungeonApplication
 
                             Console.WriteLine("Your fat fingers put in the wrong input. Do it again.");
 
-                            break;
+                            break;//Wrong input
                     }
 
                     #endregion
@@ -167,7 +167,7 @@ namespace DungeonApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("YOU ARE DEAD");
-                        Console.Beep(80, 300);
+                        Console.Beep(800, 3000);
                         exit = true;
                     }
 
@@ -183,7 +183,7 @@ namespace DungeonApplication
         }//End Main
 
 
-        //Creat GetRoom() & plug it into the TODO above
+        
         private static string GetRoom()
         {
             string[] rooms =

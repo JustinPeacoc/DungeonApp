@@ -13,7 +13,7 @@ namespace EnemyLibrary
         {
             Random rand = new Random();
             int attackNbr = rand.Next(1, 151);
-
+            
             if (attackNbr <= (attacker.CalcHitChance()) - defender.CalcBlockDodge())
             {
 
@@ -21,17 +21,19 @@ namespace EnemyLibrary
 
                 defender.Health -= damageDealt;
 
+
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("{0} took {1} HP from {2}",
+                Console.WriteLine("{0} hit {1} for {2} HP.",
                     attacker.Name,
-                    damageDealt,
-                    defender.Name);
+                    defender.Name,
+                    damageDealt);
                 Console.ResetColor();
             }
             else
             {
                 Console.WriteLine("{0} didn't hit the target.", attacker.Name);
-            }
+            }//attacker misses
+            //end attack
         }
 
         public static void DoBattle(Player player, Enemy enemy)

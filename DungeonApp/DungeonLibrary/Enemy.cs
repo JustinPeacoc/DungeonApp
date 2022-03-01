@@ -46,7 +46,7 @@ namespace DungeonLibrary
             MinDamage = minDamage;
             Description = description;
 
-        }
+        }//Create an ememy
 
         public Enemy() { }
 
@@ -65,7 +65,7 @@ namespace DungeonLibrary
                 MaxDamage,
                 BlockDodge,
                 Description);
-        }
+        }//Enemy Info
 
         public override int CalcDamage()
         {
@@ -74,6 +74,6 @@ namespace DungeonLibrary
             Random rand = new Random();
 
             return rand.Next(MinDamage, MaxDamage + 1);
-        }
+        }//Calculate Damage
     }
 }

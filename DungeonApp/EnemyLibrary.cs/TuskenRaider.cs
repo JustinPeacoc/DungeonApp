@@ -9,8 +9,8 @@ namespace EnemyLibrary
 {
     public class TuskenRaider : Enemy
     {
-        public TuskenRaider (string name, int health, int maxHealth, int minHealth, int blockDodge, int minDamage, int maxDamage, string description)
-               : base(name, health, maxHealth, minHealth, blockDodge, minDamage, maxDamage, description)
+        public TuskenRaider (string name, int health, int maxHealth, int hitChance, int blockDodge, int minDamage, int maxDamage, string description)
+               : base(name, health, maxHealth, hitChance, blockDodge, minDamage, maxDamage, description)
         {
         }
         public TuskenRaider ()

@@ -152,7 +152,21 @@ namespace DungeonLibrary
             return string.Format($"\n<==========|--{Name}---|==========>\n" +
                 $"\nHealth Points: {Health}\nMax Health: {MaxHealth}\nHit Chance: {HitChance}\nWeapon: {PlayerWeapon}\n" +
                 $"\nBlock: {BlockDodge}\nRace:{description}");
+
         }
+
+        public override int CalcDamage()
+        {
+            Random playerAttack = new Random();
+            int damage = playerAttack.Next(PlayerWeapon.MinDamage, PlayerWeapon.MaxDamage + 1);
+
+            return damage;
+        }//Calculate Damage
+
+        public override int CalcHitChance()
+        {
+            return base.CalcHitChance() + PlayerWeapon.HitChance;
+        }//Calculate chance of hitting
     } 
 }
 

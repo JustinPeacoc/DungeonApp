@@ -9,8 +9,8 @@ namespace EnemyLibrary
 {
     public class StormTrooper : Enemy
     {
-        public StormTrooper (string name, int health, int maxHealth, int minHealth, int blockDodge, int minDamage, int maxDamage, string description)
-            : base(name, health, maxHealth, minHealth, blockDodge, minDamage, maxDamage, description)
+        public StormTrooper (string name, int health, int maxHealth, int hitChance, int blockDodge, int minDamage, int maxDamage, string description)
+            : base(name, health, maxHealth, hitChance, blockDodge, minDamage, maxDamage, description)
         {
         }
         public StormTrooper()
@@ -19,7 +19,7 @@ namespace EnemyLibrary
             MaxDamage = 20;
             Name = "Stormtrooper";
             Health = 50;
-            HitChance = 0;
+            HitChance = 101;
             BlockDodge = 20;
 
             MinDamage = 1;
